@@ -1,4 +1,26 @@
 TO DO:
 verander true surviver quest
 Map
-test
+
+Races:
+Human
+    +4 Health
+Elf
+    +2 Perception
+Dwarf
+    +2 Defence
+Orc
+    +2 Strength
+Gnome
+    +2 Speed
+
+Stats:
+    Health
+    Strength
+        -Melee damage
+    Defence
+        -AC
+    Perception
+        -Chance to hit
+    Speed
+        -Chance to attack first

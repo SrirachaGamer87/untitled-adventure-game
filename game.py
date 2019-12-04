@@ -30,6 +30,7 @@ def titleScreen():
             time.sleep(0.5)
             lastName = input('What is your family name? ')
             displayIntro()
+            '''
             while start != 'on' or 'off':
                 start = input('Do you want to play with the visuals "on" or "off"? ')
                 if start == 'on':
@@ -45,6 +46,7 @@ def titleScreen():
                     time.sleep(0.5)
                 else:
                     continue
+            '''
             time.sleep(1)
             levelUp()
             equippedCheck()
@@ -245,17 +247,6 @@ def equippedCheck():
     global feet
 
     for item in equipped:
-        if worldItems[item][EQUIPTYPE] == 'HEAD':
-                head = item
-        elif worldItems[item][EQUIPTYPE] == 'CHEST':
-                chest = item
-        elif worldItems[item][EQUIPTYPE] == 'HANDS':
-                hands = item
-        elif worldItems[item][EQUIPTYPE] == 'LEGS':
-                legs = item
-        else:
-                feet = item
-        
         stats[1] += worldItems[item][STRENGTH]
         stats[2] += worldItems[item][DEFENCE]
         stats[3] += worldItems[item][PERCEPTION]
@@ -631,7 +622,7 @@ def wild():
             cutscene()
     else:
         worldRooms[location][CREATURES] = [] 
-        enemyRoll = randint(0, 3)
+        enemyRoll = randint(0, 4)
         if enemyRoll == 0:
             return
         else:
@@ -639,13 +630,13 @@ def wild():
                 typeRoll = randint(1, 100) + (level - 1 * 5)
                 if typeRoll <= 30:
                     worldRooms[location][CREATURES].append('Wild Frog')
-                elif typeRoll >= 31 and typeRoll <= 55:
+                elif 31 <= typeRoll <= 55 and level >= 3:
                     worldRooms[location][CREATURES].append('Wild Chicken')
-                elif typeRoll >= 56 and typeRoll <= 75:
+                elif 56 <= typeRoll <= 75 and level >= 5:
                     worldRooms[location][CREATURES].append('Wild Cow')
-                elif typeRoll >= 76 and typeRoll <= 95:
+                elif 76 <= typeRoll <= 95 and level >= 7:
                     worldRooms[location][CREATURES].append('Wild Wolf')
-                else:
+                elif typeRoll >= 96 and level >= 10:
                     worldRooms[location][CREATURES].append('Wild Unicorn')      
 
 """def drawRoom():
@@ -1664,7 +1655,7 @@ class TextAdventureCmd(cmd.Cmd):
             elif worldItems[item][EQUIPTYPE] == 'CHEST':
                 self.chest = 0
             elif worldItems[item][EQUIPTYPE] == 'HANDS':
-                self.hands = 0
+                self.hands = 'test'
             elif worldItems[item][EQUIPTYPE] == 'LEGS':
                 self.legs = 0
             else:
@@ -1749,7 +1740,7 @@ class TextAdventureCmd(cmd.Cmd):
             if i == 6:
                 print(str(i) + ': ' + str(location))
     """
-
+'''
 class RoomCreatures(arcade.Sprite):
     def update(self):
         pass
@@ -1996,12 +1987,12 @@ def bork():
     window = Visuals(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
     window.setup()
     arcade.run()
-
+'''
 if __name__ == '__main__':
-    titleScreen()
+    #titleScreen()
     levelUp()
     equippedCheck()
     displayLocation(location)
-    bork()    
+    #bork()    
     TextAdventureCmd().cmdloop()
 
